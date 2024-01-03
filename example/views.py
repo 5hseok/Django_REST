@@ -59,7 +59,7 @@ class BooksAPIMixins(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Ge
 		return self.list(request, *args, **kwargs)  # mixins.ListModelMixin과 연결
 	def post(self, request, *args, **kwargs): # POST 메소드 처리 함수(1권 등록)
 		return self.create(request, *args, **kwargs) #mixins.CreateModelMixin과 연결
-class BookAPIMixins(mixins.RetrieveModelMixins, mixins.UpdateModelMixin, mixins.DestroyModelMixin,generics.GenericAPIView):
+class BookAPIMixins(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin,generics.GenericAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     lookup_field = 'bid'
