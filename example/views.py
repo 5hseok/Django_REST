@@ -70,3 +70,14 @@ class BookAPIMixins(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.D
         return self.update(request, *args, **kwarges) # mixins.UpdateModelMixin과 연결
     def delete(self, request, *args, **kwargs): # DELETE 메소드 처리 함수(1권 삭제)
         return self.destroy(request, *args, **kwargs) # mixins.DestroyModelMixin과 연결
+    
+from rest_framework import generics
+
+class BooksAPIGenerics(generics.ListCreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    
+class BookAPIGenerics(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    lookup_field = 'bid'
